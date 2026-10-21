@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Charla de Relevo en FX Expo Medellín 2026. Cómo usar la IA para escribir tus reglas de trading, atacarlas y medirlas — y los seis errores que cuestan plata. Las herramientas, listas para copiar.">
+<title>Tu socio más incómodo · Relevo</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050505'/%3E%3Cpath d='M9 22V10h7a4 4 0 0 1 0 8h-3l4 4' stroke='%231FE6AB' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<link rel="stylesheet" href="relevo-taller.css">
+
+<style>
+  /* ── Overrides de la pieza ──────────────────────────────────────
+     Vacío a propósito: esta pieza no se desvía del canon.
+     Ver ../DESIGN-MASTER.md § Overrides por pieza. */
+</style>
+</head>
+
+<!-- Material de charla, abierto: pieza de una sola sesión, lleva glow. -->
+<body class="glow">
+
+<div class="layout">
+
+  <aside class="side">
+    <a class="brand" href="https://curso.relevo.academy/" target="_blank" rel="noopener">
+      <img class="lockup" src="assets/relevo-lockup.png" alt="Relevo">
+      <span class="sub">Academia de IA</span>
+      <span class="handle">@relevo.academy</span>
+    </a>
+
+    <p class="session-title">
+      <strong>Tu socio más incómodo</strong>
+      IA y trading: lo que sí sirve, y los seis errores que cuestan plata · FX Expo Medellín 2026
+    </p>
+
+    <div class="tabs" role="tablist" aria-label="Secciones de la charla">
+      <button class="tab" role="tab" id="tab-slides" aria-controls="slides" aria-selected="true">Diapositivas <span class="n">1</span></button>
+      <button class="tab" role="tab" id="tab-tools" aria-controls="tools" aria-selected="false">Las herramientas <span class="n">2</span></button>
+      <button class="tab" role="tab" id="tab-errors" aria-controls="errors" aria-selected="false">Los seis errores <span class="n">3</span></button>
+    </div>
+
+    <p class="anchor-quote">
+      <b>"No vine a darte una estrategia. Vine a mostrarte cómo escribir la tuya."</b>
+    </p>
+  </aside>
+
+  <main>
+
+    <!-- ════════ 1 · DIAPOSITIVAS ════════════════════════════════ -->
+    <section class="panel on" id="slides" role="tabpanel" aria-labelledby="tab-slides" tabindex="0">
+      <div class="deck">
+
+        <!-- ── Apertura ── -->
+        <article class="slide acc-1">
+          <p class="kick">FX Expo Medellín 2026</p>
+          <h1>Tu socio <span class="hl">más incómodo</span></h1>
+          <p>IA y trading: lo que sí sirve, y los seis errores que cuestan plata.</p>
+        </article>
+
+        <article class="slide acc-2">
+          <p class="kick">Los primeros 90 segundos</p>
+          <h2>La IA <span class="hl">no</span> va a predecir el mercado.</h2>
+          <p>Pero sí puede hacer algo que casi nadie hace: obligarte a escribir tu
+             estrategia, atacarla hasta encontrarle los huecos, y medir lo que de
+             verdad pasó cuando la operaste.</p>
+          <p class="hit">Eso es lo que vamos a hacer, en vivo.</p>
+        </article>
+
+        <article class="slide acc-3">
+          <p class="kick">Antes de empezar</p>
+          <h2>Qué <span class="hl-2">no</span> es esto</h2>
+          <ul>
+            <li><b>No es asesoría de inversión.</b> No vas a oír un activo, ni una cifra de rentabilidad, ni un "esto habría dado tanto".</li>
+            <li><b>No es una estrategia.</b> La del demo es de manual, a propósito.</li>
+            <li><b>No soy trader</b>, y no lo voy a fingir. Mi trabajo es otro: cómo se usa IA cuando equivocarse cuesta plata.</li>
+          </ul>
+        </article>
+
+        <!-- ── Bloque 1 · Escribir ──
+             La portada de bloque salió en el recorte a 30 min. Su línea
+             —la de la memoria que se acomoda— se absorbió acá. -->
+        <article class="slide acc-2">
+          <p class="kick">Bloque 1 · Escribir las reglas</p>
+          <h2>Las cinco partes</h2>
+          <p>Una estrategia que no está escrita no se puede revisar, no se puede
+             probar y no se puede defender. Solo se puede recordar — y la memoria
+             se acomoda a lo que te conviene.</p>
+          <ul>
+            <li><b>Entrada</b> — qué tiene que pasar para que entres.</li>
+            <li><b>Salida</b> — qué tiene que pasar para que salgas.</li>
+            <li><b>Invalidación</b> — qué te dice que la idea estaba mal.</li>
+            <li><b>Tamaño</b> — cuánto arriesgas por operación.</li>
+            <li><b>Los "no"</b> — qué no operas nunca.</li>
+          </ul>
+        </article>
+
+        <article class="slide acc-3">
+          <p class="kick">Bloque 1</p>
+          <h2>La que casi nadie tiene escrita</h2>
+          <p class="hit">La invalidación.</p>
+          <p>Salir con pérdida no es lo mismo que haberte equivocado. La
+             invalidación es la condición que te dice que <b>la idea</b> estaba
+             mal, no solo que la operación salió mal.</p>
+          <p>Si no la tienes escrita, cada pérdida se discute. Y la discusión
+             siempre la ganas tú.</p>
+        </article>
+
+        <article class="slide acc-1">
+          <p class="kick">Bloque 1 · En vivo</p>
+          <h2>Tres frases vagas entran. Reglas salen.</h2>
+          <p>La herramienta <b>H1</b> entrevista una pregunta a la vez y no avanza
+             con respuestas vagas. Lo que no definas queda marcado como
+             <code>[sin definir]</code> — no inventado.</p>
+          <p class="hit">Está en la pestaña "Las herramientas".</p>
+        </article>
+
+        <!-- ── Bloque 2 · Atacar ──
+             Portada de bloque fuera por el recorte; su línea entra acá. -->
+        <article class="slide acc-2">
+          <p class="kick">Bloque 2 · Atacarlas</p>
+          <h2>Si preguntas si está buena, <span class="hl-2">te van a decir que sí</span></h2>
+          <p>No te valida porque tu estrategia sea buena. Te valida porque
+             <b>"sí, está buena"</b> es la respuesta que más veces vio.</p>
+          <p class="hit">Un socio que siempre te da la razón no es un socio.</p>
+          <p>Este es el bloque que te llevas, y el que nadie enseña.</p>
+        </article>
+
+        <article class="slide acc-3">
+          <p class="kick">Bloque 2</p>
+          <h2>El cambio de pregunta</h2>
+          <p class="hit">"No me digas si mi estrategia es buena. Dime en qué
+             mercado se rompe, qué está dando por sentado, y cómo sabría yo que
+             dejó de funcionar."</p>
+          <p>Misma herramienta. Otra pregunta. Otro resultado.</p>
+        </article>
+
+        <!-- ── Bloque 3 · Medir ──
+             Portada de bloque fuera por el recorte; su línea entra acá. -->
+        <article class="slide acc-2">
+          <p class="kick">Bloque 3 · Medirlas · A</p>
+          <h2>Código de backtest, sin programar</h2>
+          <p>Medir son dos cosas distintas, y conviene que queden separadas: el
+             código que prueba la estrategia, y el espejo que te muestra a ti.
+             Primero el código.</p>
+          <p>Pine Script o Python a partir de tus reglas escritas, con una
+             condición innegociable: <b>que marque qué parte no puede
+             verificar</b> y qué supuestos tuvo que asumir.</p>
+          <p class="warn">⚠ Toda función y todo parámetro se confirma contra la
+             documentación oficial antes de usarse. Sin excepción.</p>
+        </article>
+
+        <article class="slide acc-3">
+          <p class="kick">Bloque 3 · B</p>
+          <h2>El tablero no mira el mercado. <span class="hl-2">Te mira a ti.</span></h2>
+          <p>Tu histórico de operaciones, convertido en una vista de tus propios
+             patrones: por día de la semana, por hora, por tamaño, y por lo que
+             pasó en la operación anterior.</p>
+          <p class="hit">Ese último corte es el que incomoda: muestra si después
+             de perder operas más grande — revancha — o más chico — miedo.</p>
+          <p>¿No tienes histórico en archivo? Hay una plantilla CSV en esta misma
+             página. Sin datos con renglones este bloque no existe para ti, y es
+             mejor saberlo hoy.</p>
+        </article>
+
+        <!-- ── Bloque 4 · Los seis errores ──
+             Sin portada de bloque: el kicker del error 1 abre la sección. -->
+        <article class="slide acc-2">
+          <p class="kick">Bloque 4 · Error 1 de 6</p>
+          <h2>No predice precios</h2>
+          <p>Los seis que siguen cuestan plata y ninguno es evidente. Los vas a
+             reconocer.</p>
+          <p>Un modelo de lenguaje predice la siguiente <b>palabra</b>, no el
+             siguiente precio. Y no tiene datos de mercado en vivo salvo que se
+             los pegues.</p>
+          <p class="hit">Cualquier "pronóstico" que te dé es texto plausible, no análisis.</p>
+        </article>
+
+        <article class="slide acc-2">
+          <p class="kick">Error 2 de 6</p>
+          <h2>No calcula: <span class="hl-2">estima</span></h2>
+          <p>No hace la cuenta. Lee los números como si fueran texto y escribe
+             el que <b>parece</b> correcto. Interés compuesto, tamaño de
+             posición, drawdown: todo sale con cara de bien.</p>
+          <p class="hit">La regla: no le pidas el número. Pídele la fórmula, o que escriba el código y lo corras tú.</p>
+        </article>
+
+        <article class="slide acc-2">
+          <p class="kick">Error 3 de 6</p>
+          <h2>Inventa funciones e indicadores</h2>
+          <p>En Pine Script, MQL o Python devuelve funciones que no existen y
+             parámetros que no son. A veces ni compila.</p>
+          <p class="hit">Peor cuando compila y hace otra cosa.</p>
+          <p>La regla: toda función se confirma contra la documentación oficial antes de usarse.</p>
+        </article>
+
+        <article class="slide acc-2">
+          <p class="kick">Error 4 de 6</p>
+          <h2>Te da la razón</h2>
+          <p>Si preguntas si tu estrategia es buena, valida. Los modelos tienden
+             a complacer.</p>
+          <p class="hit">La regla: pídele explícitamente que ataque, y dale contra qué atacar.</p>
+        </article>
+
+        <article class="slide acc-2">
+          <p class="kick">Error 5 de 6</p>
+          <h2>Te sobreajusta el backtest</h2>
+          <p>Si le pides optimizar parámetros contra tu histórico, devuelve la
+             curva más bonita posible — ajustada al ruido de ese período.</p>
+          <p class="hit">Muere en vivo.</p>
+          <p>La regla: los parámetros se fijan <b>antes</b> de ver el resultado, no después.</p>
+        </article>
+
+        <article class="slide crit">
+          <p class="kick">Error 6 de 6</p>
+          <h2>Tu cuenta no se sube nunca</h2>
+          <ul>
+            <li>Credenciales del broker.</li>
+            <li>Número de cuenta.</li>
+            <li>Extractos y capturas con saldos.</li>
+          </ul>
+          <p class="warn">⚠ Y si publicas o compartes un artefacto, queda a la
+             vista de cualquiera que tenga el enlace.</p>
+        </article>
+
+        <!-- ── Cierre ── -->
+        <article class="slide acc-1">
+          <p class="kick">Cierre</p>
+          <h2>Lo que no se delega</h2>
+          <ul>
+            <li><b>La decisión de entrar.</b></li>
+            <li><b>El tamaño de la posición.</b></li>
+            <li><b>Aceptar la pérdida.</b></li>
+          </ul>
+          <p>La IA escribe, ataca y mide. Opera quien responde por la cuenta.</p>
+        </article>
+
+        <article class="slide acc-3">
+          <p class="kick">Si quieres seguir</p>
+          <h2>Las herramientas de hoy <span class="hl">ya son tuyas</span></h2>
+          <p>Están en esta misma página, abiertas y sin registro: los cuatro
+             prompts y la plantilla.</p>
+          <p class="hit">@relevo.academy — ahí avisamos lo que viene.</p>
+        </article>
+
+        <div class="deck-nav">
+          <div class="arrows">
+            <button class="arw" type="button" data-deck="prev">← Anterior</button>
+            <button class="arw" type="button" data-deck="next">Siguiente →</button>
+          </div>
+          <div class="dots"></div>
+          <span class="count"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ 2 · LAS HERRAMIENTAS ════════════════════════════ -->
+    <section class="panel" id="tools" role="tabpanel" aria-labelledby="tab-tools" tabindex="0">
+      <header class="lead">
+        <p class="eyebrow">Las herramientas</p>
+        <h1>Lo que te llevas de la charla</h1>
+        <p>Cuatro prompts y una plantilla. Se copian con un clic y se bajan como
+           archivo. Corren en Claude, ChatGPT o el asistente que uses.</p>
+        <p><b>H1</b>, <b>H2</b> y <b>H3A</b> van en la misma conversación, en
+           este ciclo:</p>
+
+        <ol class="pasos">
+          <li><b>H1</b> saca tu estrategia de tu cabeza y la deja escrita.</li>
+          <li><b>H2</b> la ataca y te devuelve los huecos.</li>
+          <li><b>Corriges las reglas.</b> Este paso es tuyo y es el que casi
+              todo el mundo se salta. Si no lo haces, el paso 4 te va a
+              convertir en código una estrategia que ya sabes que está rota.</li>
+          <li><b>H3A</b> convierte las reglas <b>corregidas</b> en código.</li>
+        </ol>
+
+        <p><b>H3B es aparte.</b> No usa tus reglas: usa tu histórico de
+           operaciones. Va en una conversación nueva, con el archivo adjunto.</p>
+      </header>
+
+      <!-- H1 -->
+      <article class="step-card">
+        <div class="step-head">
+          <span class="step-num">H1</span>
+          <h3>Escribe tus reglas</h3>
+        </div>
+        <p><b>Para qué sirve:</b> una estrategia que no está escrita no se puede
+           revisar, no se puede probar y no se puede defender. Solo se puede
+           recordar — y la memoria se acomoda a lo que te conviene. Esto la saca
+           de tu cabeza sin cambiarla.</p>
+
+        <p>Te entrevista una pregunta a la vez. No avanza con respuestas vagas y
+           no completa lo que falta: lo marca como <code>[sin definir]</code>.</p>
+
+        <div class="prompt-box">
+          <button class="copy" type="button">Copiar</button>
+<pre class="code" id="p-h1">Vas a ayudarme a convertir mi estrategia de trading en reglas
+escritas y verificables. La estrategia es mía: tu trabajo es
+sacarla de mi cabeza, no mejorarla.
+
+Entrevístame UNA PREGUNTA A LA VEZ hasta cubrir estas seis
+partes:
+
+1. QUÉ OPERO — instrumento y marco temporal.
+2. ENTRADA — qué tiene que pasar para que entre.
+3. SALIDA — qué tiene que pasar para que salga, tanto a favor
+   como en contra.
+4. INVALIDACIÓN — qué me dice que la idea estaba equivocada,
+   no solo que la operación salió mal. Son cosas distintas.
+5. TAMAÑO Y RIESGO — cuánto arriesgo por operación y cuál es
+   mi pérdida máxima aceptable.
+6. LOS "NO" — qué no opero nunca, y en qué condiciones me
+   quedo afuera.
+
+REGLAS QUE TIENES QUE SEGUIR:
+
+- Una pregunta a la vez. Espera mi respuesta antes de la
+  siguiente.
+- Si mi respuesta es vaga, repregunta UNA vez dándome un
+  ejemplo concreto de qué tan específico lo necesitas.
+  Si sigue vaga, márcala como [sin definir] y sigue.
+- Si te falta un dato, pregúntamelo. Nunca lo completes.
+- NO me sugieras valores, parámetros, indicadores ni activos.
+  Si te pido que elijas por mí, recuérdame que la estrategia
+  es mía.
+- No opines sobre si la estrategia es buena, ni la ataques.
+  Eso viene después y no es tu turno.
+- Si te digo "saltar", pasa a la parte siguiente y marca la
+  anterior como [sin definir]. No insistas.
+
+CUÁNTO VA A DURAR: dime al empezar cuántas preguntas calculas
+que son, y numéralas (3 de 12, 4 de 12...) para que yo sepa
+dónde estoy.
+
+CUANDO TERMINEMOS, devuélveme las reglas en bloques etiquetados
+con los seis títulos de arriba, listos para copiar, y cierra
+con una lista de todo lo que quedó como [sin definir].
+
+Después de eso no hagas nada más y espera: lo siguiente es
+atacar estas reglas, y te voy a pasar otra instrucción.
+
+Empieza diciéndome cuántas preguntas son y hazme la primera.</pre>
+        </div>
+
+        <div class="dl">
+          <a class="dl-file" href="#" data-src="p-h1" data-nombre="H1-escribe-tus-reglas.txt">Descargar como archivo</a>
+        </div>
+
+        <div class="beneficio">
+          <span class="beneficio-tag">Qué te llevas</span>
+          <p>Tu estrategia en seis bloques que se pueden leer, discutir y probar.
+             <strong>Y la lista de lo que nunca habías definido.</strong></p>
+        </div>
+      </article>
+
+      <!-- H2 -->
+      <article class="step-card">
+        <div class="step-head">
+          <span class="step-num">H2</span>
+          <h3>Rómpela</h3>
+        </div>
+        <p><b>Para qué sirve:</b> encontrar dónde se rompe tu estrategia antes de
+           que te lo encuentre el mercado. Es un pre-mortem: asume que ya
+           fracasó y explica por qué.</p>
+
+        <p>Tiene prohibido validarte. Y tiene prohibido proponerte otra
+           estrategia — ataca la que hay.</p>
+
+        <div class="prompt-box">
+          <button class="copy" type="button">Copiar</button>
+<pre class="code" id="p-h2">Tienes arriba mis reglas de trading. Tu trabajo ahora es
+atacarlas. No validarlas.
+
+Si no ves mis reglas en esta conversación, NO te las
+inventes ni las supongas: pídemelas y espera.
+
+Hazlo como un pre-mortem: asume que esta estrategia ya fracasó
+y explica por qué.
+
+DEVUÉLVEME, EN ESTE ORDEN:
+
+1. EN QUÉ RÉGIMEN DE MERCADO SE ROMPE
+   Revisa uno por uno: tendencia, rango, alta volatilidad,
+   baja liquidez, y días de noticias. Para cada uno, di si
+   aguanta o se rompe, y por qué.
+
+2. QUÉ SUPUESTO OCULTO TIENE
+   Lo que la estrategia da por sentado sin decirlo.
+
+3. QUÉ LE FALTA PARA SER FALSABLE
+   Es decir: cómo sabría yo que dejó de funcionar. Si no hay
+   forma de saberlo, dilo con esas palabras.
+
+4. QUÉ COSTOS NO ESTÁ CONTANDO
+   Spread, comisión, slippage y swap. Si no puedes estimarlos
+   sin datos míos, dime qué datos necesitas.
+
+5. LAS TRES PREGUNTAS QUE DEBERÍA HABERME HECHO
+   Y no me hice.
+
+REGLAS QUE TIENES QUE SEGUIR:
+
+- Prohibido validar. Si de verdad no encuentras un problema en
+  algún punto, dilo explícitamente: "no encuentro un problema
+  aquí". No rellenes con elogios.
+- No suavices. No empieces por lo bueno.
+- NO me propongas una estrategia alternativa. Ataca la que hay.
+- No inventes datos de mercado ni cifras de rendimiento.
+- Si algo no puedes evaluar con lo que te di, dilo en vez de
+  suponerlo.
+
+PARA CERRAR: ordena los problemas que encontraste de más grave
+a menos grave, y dime cuáles se arreglan cambiando una regla
+y cuáles son del diseño de la estrategia.
+
+No me propongas tú los cambios. Los voy a decidir yo y te los
+voy a dictar.</pre>
+        </div>
+
+        <div class="dl">
+          <a class="dl-file" href="#" data-src="p-h2" data-nombre="H2-rompela.txt">Descargar como archivo</a>
+        </div>
+
+        <div class="beneficio">
+          <span class="beneficio-tag">Qué te llevas</span>
+          <p>Los huecos de tu estrategia, escritos.
+             <strong>Un socio que te lleva la contraria vale más que diez que te aplauden.</strong></p>
+        </div>
+      </article>
+
+      <!-- H3A -->
+      <article class="step-card">
+        <div class="step-head">
+          <span class="step-num">H3 · A</span>
+          <h3>Código de backtest</h3>
+        </div>
+        <p><b>Para qué sirve:</b> pasar de reglas escritas a código que las pruebe,
+           sabiendo <b>exactamente qué parte de ese código no es confiable</b>.
+           Esa declaración es lo que te separa del error 3.</p>
+
+        <p>Corre después de que corrijas lo que H2 encontró, no antes.</p>
+
+        <div class="prompt-box">
+          <button class="copy" type="button">Copiar</button>
+<pre class="code" id="p-h3a">Convierte mis reglas de trading de arriba en código de backtest.
+
+Si no ves mis reglas en esta conversación, NO te las inventes:
+pídemelas y espera.
+
+Antes de escribir nada, confirma conmigo dos cosas:
+- Si vas a usar las reglas ORIGINALES o las CORREGIDAS después
+  de atacarlas. Si no te lo dije, pregúntamelo: no asumas.
+- En qué lenguaje lo quiero (Pine Script o Python) y con qué
+  datos voy a correrlo.
+
+CONDICIÓN INNEGOCIABLE:
+
+Al terminar el código, agrega una sección llamada
+"LO QUE NO PUEDO VERIFICAR" donde listes:
+
+- Qué funciones o parámetros usaste que NO puedes confirmar que
+  existen con ese nombre y esa firma.
+- Qué supuestos tuviste que asumir porque mis reglas no lo
+  decían.
+- Qué parte del código no probaste y por qué.
+
+Si esa sección te queda vacía, revisa de nuevo: casi nunca
+está vacía.
+
+REGLAS QUE TIENES QUE SEGUIR:
+
+- Comenta en el código cada regla mía con el número del bloque
+  del que salió, para que yo pueda rastrearla.
+- No optimices parámetros. Usa exactamente los valores que yo
+  di. Si no di uno, déjalo como constante nombrada arriba del
+  todo y márcalo en la sección de supuestos.
+- No agregues filtros, indicadores ni condiciones que yo no
+  haya pedido.
+- Incluye los costos de operación como parámetros visibles
+  (spread, comisión, slippage), aunque yo no los haya dado:
+  déjalos en cero y señalados, para que yo los llene.
+PARA CERRAR, dame la LISTA DE VERIFICACIÓN: todas las
+funciones y parámetros del lenguaje que usaste, una por línea,
+para que yo los busque uno por uno en la documentación oficial
+antes de correr esto. Marca con una señal los que menos seguro
+estés de haber escrito bien.
+
+Una lista que yo pueda tachar, no un aviso al final.</pre>
+        </div>
+
+        <div class="dl">
+          <a class="dl-file" href="#" data-src="p-h3a" data-nombre="H3A-codigo-de-backtest.txt">Descargar como archivo</a>
+        </div>
+
+        <div class="beneficio">
+          <span class="beneficio-tag">Qué te llevas</span>
+          <p>Código trazable a tus reglas.
+             <strong>Y la lista de lo que el modelo no pudo verificar — que es la parte que te salva.</strong></p>
+        </div>
+      </article>
+
+      <!-- H3B -->
+      <article class="step-card">
+        <div class="step-head">
+          <span class="step-num">H3 · B</span>
+          <h3>Tablero del histórico</h3>
+        </div>
+        <p><b>Para qué sirve:</b> tu plataforma te dice cómo te fue. No te dice
+           <b>cuándo</b> operas peor. Esta herramienta cruza tu histórico contra
+           el día, la hora, el tamaño y —sobre todo— contra cómo salió la
+           operación anterior. No mira el mercado: te mira a ti.</p>
+
+        <p>El tablero sale como un archivo HTML que abres con doble clic y
+           guardas. No es una respuesta en el chat que se pierde.</p>
+
+        <ol class="pasos">
+          <li><b>Exporta tu histórico.</b> En tu plataforma: "historial",
+              "reporte de cuenta" o "exportar operaciones". CSV o Excel.
+              ¿No puedes? Usa la plantilla de abajo.</li>
+          <li><b>Bórrale el número de cuenta y el saldo</b> si la exportación
+              los trae. El tablero no los necesita. Ver el error 6.</li>
+          <li><b>Abre una conversación nueva</b> — no la de H1 y H2.</li>
+          <li><b>Adjunta el archivo</b> y pega este prompt. No pegues el CSV
+              como texto: adjúntalo.</li>
+        </ol>
+
+        <div class="prompt-box">
+          <button class="copy" type="button">Copiar</button>
+<pre class="code" id="p-h3b">Te adjunto un CSV con mi histórico de operaciones.
+
+Constrúyeme un tablero visual, en UN SOLO archivo HTML que
+pueda abrir con doble clic y guardar, que me muestre MIS
+patrones. No los del mercado: los míos.
+
+PASO 1 — ANTES DE CALCULAR NADA, dime:
+- Cuántas filas leíste.
+- Qué rango de fechas cubren.
+- Cuántas descartaste por estar incompletas, y cuáles.
+- Qué columnas encontraste y cuáles de las que necesitas
+  faltan.
+
+Si falta una columna, dímelo y OMITE ese corte. No la
+inventes ni la deduzcas.
+
+PASO 2 — LOS CORTES. Cada uno responde una pregunta concreta:
+
+- Por DÍA DE LA SEMANA
+  ¿Hay un día en que opero peor?
+
+- Por HORA DE ENTRADA
+  ¿Opero a horas en las que no debería estar operando?
+
+- Por TAMAÑO DE POSICIÓN
+  ¿Mis operaciones más grandes son mis mejores operaciones,
+  o solo las más caras?
+
+- Por RESULTADO DE LA OPERACIÓN ANTERIOR
+  Este es el que más me interesa. Compara mi tamaño promedio
+  y mi resultado después de una ganancia contra después de
+  una pérdida. Busca si opero más grande después de perder
+  (revancha) o más chico después de perder (miedo).
+
+- RACHAS
+  La más larga ganadora y la más larga perdedora, con fechas.
+
+PASO 3 — LA LECTURA. Cierra el tablero con un bloque de
+máximo 5 frases: los patrones más marcados que encontraste,
+uno por frase, cada uno con el número que lo sostiene.
+
+Ejemplo del tipo de frase que quiero:
+"Después de una pérdida tu tamaño promedio sube un 60%
+(0.8 contra 0.5 lotes, sobre 34 operaciones)."
+
+REGLAS QUE TIENES QUE SEGUIR:
+
+- DESCRIBE, NO ACONSEJES. Puedes nombrar el patrón y darme el
+  número que lo sostiene. NO me digas qué debería hacer, ni
+  qué cambiar, ni qué operar. La diferencia: "tu tamaño sube
+  60% después de perder" es un dato y lo quiero; "deberías
+  reducir el tamaño" es un consejo y no lo quiero.
+- Cada afirmación va con el número y la cantidad de
+  operaciones sobre las que la calculaste. Sin número, no la
+  escribas.
+- No extrapoles, no proyectes resultados futuros, no estimes
+  rentabilidad.
+- Si una muestra tiene menos de 20 operaciones, márcalo en el
+  propio gráfico como muestra chica. Con pocos datos
+  cualquier patrón parece real.
+- Si no encuentras un patrón claro en algún corte, dilo con
+  esas palabras. No inventes uno para llenar el espacio.
+- Paleta oscura, legible de lejos, sin librerías externas.</pre>
+        </div>
+
+        <div class="dl">
+          <a class="dl-file" href="#" data-src="p-h3b" data-nombre="H3B-tablero-del-historico.txt">Descargar como archivo</a>
+          <a class="dl-file" href="descargas/PLANTILLA-operaciones.csv" download>Plantilla CSV (si no tienes histórico)</a>
+          <a class="dl-file" href="descargas/LEEME-plantilla.txt" download>Cómo llenar la plantilla</a>
+        </div>
+
+        <div class="beneficio">
+          <span class="beneficio-tag">Qué te llevas</span>
+          <p>Un espejo de cómo operas de verdad.
+             <strong>El corte por "resultado de la operación anterior" es el que incomoda.</strong></p>
+        </div>
+      </article>
+
+      <div class="warn">
+        ⚠ Ninguno de estos prompts te pide credenciales, número de cuenta ni
+        extractos. Si alguna vez una herramienta te los pide, esa no es la
+        herramienta. Ver el error 6.
+      </div>
+    </section>
+
+    <!-- ════════ 3 · LOS SEIS ERRORES ════════════════════════════ -->
+    <section class="panel" id="errors" role="tabpanel" aria-labelledby="tab-errors" tabindex="0">
+      <header class="lead">
+        <p class="eyebrow">Los seis errores</p>
+        <h1>Los que cuestan plata</h1>
+        <p>Ninguno es evidente. Los seis son verificables: puedes comprobarlos
+           hoy mismo con tu propio asistente.</p>
+        <p>La etiqueta de cada tarjeta dice <b>en qué momento te pasa</b>. Es la
+           señal para reconocerlo mientras está ocurriendo.</p>
+      </header>
+
+      <div class="vocab-grid">
+        <article class="vocab-card">
+          <h3>1 · No predice precios</h3>
+          <p>Un modelo de lenguaje predice la siguiente palabra, no el siguiente
+             precio. Y no tiene datos de mercado en vivo salvo que se los pegues.
+             Cualquier "pronóstico" que te dé es texto plausible, no análisis.</p>
+          <span class="tag">Al pedir pronósticos</span>
+        </article>
+
+        <article class="vocab-card">
+          <h3>2 · No calcula: estima</h3>
+          <p>No hace la cuenta. Lee los números como si fueran texto y escribe el
+             que <b>parece</b> correcto. Interés compuesto, tamaño de posición,
+             drawdown: todo sale con cara de bien.
+             <b>La regla:</b> no le pidas el número. Pídele la fórmula, o que
+             escriba el código y lo corras tú.</p>
+          <span class="tag">Al pedir números</span>
+        </article>
+
+        <article class="vocab-card">
+          <h3>3 · Inventa funciones e indicadores</h3>
+          <p>En Pine Script, MQL o Python devuelve funciones que no existen y
+             parámetros que no son. A veces ni compila. Peor cuando compila y hace
+             otra cosa.
+             <b>La regla:</b> toda función se confirma contra la documentación
+             oficial antes de usarse.</p>
+          <span class="tag">Al pedir código</span>
+        </article>
+
+        <article class="vocab-card">
+          <h3>4 · Te da la razón</h3>
+          <p>Si preguntas si tu estrategia es buena, valida. Los modelos tienden a
+             complacer.
+             <b>La regla:</b> hay que pedirle explícitamente que ataque, y darle
+             contra qué atacar.</p>
+          <span class="tag">Al pedir opinión</span>
+        </article>
+
+        <article class="vocab-card">
+          <h3>5 · Te sobreajusta el backtest</h3>
+          <p>Si le pides optimizar parámetros contra tu histórico, devuelve la
+             curva más bonita posible — ajustada al ruido de ese período. Muere en
+             vivo.
+             <b>La regla:</b> los parámetros se fijan antes de ver el resultado,
+             no después.</p>
+          <span class="tag">Al optimizar</span>
+        </article>
+
+        <article class="vocab-card">
+          <h3>6 · Tu cuenta no se sube nunca</h3>
+          <p>Credenciales del broker, número de cuenta, extractos, capturas con
+             saldos. Y si publicas o compartes un artefacto, queda a la vista de
+             cualquiera que tenga el enlace.</p>
+          <span class="tag">Al compartir datos</span>
+        </article>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <div class="pie-top">
+        <div class="pie-marca">
+          <img src="assets/relevo-lockup.png" alt="Relevo">
+          <span>Academia de IA · Colombia</span>
+        </div>
+        <nav class="pie-redes" aria-label="Canales de Relevo">
+          <a class="web" href="https://curso.relevo.academy/" target="_blank" rel="noopener">curso.relevo.academy</a>
+          <a href="https://instagram.com/relevo.academy" target="_blank" rel="noopener">Instagram</a>
+          <a href="mailto:relevoacademy@gmail.com">Correo</a>
+        </nav>
+      </div>
+      <div class="pie-legal">
+        <span>© Relevo · Academia de IA · FX Expo Medellín 2026</span>
+        <span>Material de charla. Nada de lo que hay aquí es asesoría de inversión.</span>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script src="relevo-taller.js"></script>
+</body>
+</html>

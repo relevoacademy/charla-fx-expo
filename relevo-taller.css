@@ -1,0 +1,289 @@
+/* ═══════════════════════════════════════════════════════════════════
+   RELEVO · Hoja de estilos canónica del formato de taller
+   Fuente de verdad: ../DESIGN-MASTER.md
+
+   Esta hoja NO se edita por pieza. Si un taller necesita algo que
+   no está acá, se agrega en su propio <style> bajo el título
+   "Overrides de la pieza" y se anota en el DESIGN-MASTER.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── Alto del cromo (cabecera + pestañas + barra de navegación).
+     La diapositiva se calcula contra esto, así todas miden igual y la
+     tarjeta no salta de tamaño al navegar. Cada pieza lo ajusta si su
+     cromo mide distinto — es el ÚNICO número que se toca por pieza. */
+  --alto-marco:218px;
+
+  /* ── Paleta oficial — RELEVO_MANUAL DE IDENTIDAD, p.10 ── */
+  --bg:#050505;          /* negro */
+  --surface:#131415;     /* carbón */
+  --surface-2:#1D1F20;   /* derivado, para superficies elevadas */
+  --line:rgba(167,171,175,.13);
+  --line-strong:rgba(167,171,175,.26);
+  --text:#FFFFFF;        /* blanco */
+  --text-dim:#A7ABAF;    /* gris */
+  --text-faint:#6E7376;  /* derivado del gris */
+
+  --accent:#1FE6AB;      /* verde de marca */
+  --accent-hi:#5CF0C6;   /* derivado, para hover */
+  --accent-deep:#0B7759; /* extremo oscuro del degradado del isotipo */
+  --accent-soft:rgba(31,230,171,.12);
+  --accent-line:rgba(31,230,171,.30);
+
+  /* El ámbar es SOLO para advertencias. Si decora, deja de alertar. */
+  --warn:#E8A33D;
+  --warn-soft:rgba(232,163,61,.10);
+  --warn-line:rgba(232,163,61,.28);
+
+  --r-card:24px;
+  --r-inner:14px;
+  --r-pill:999px;
+
+  --t-fast:.25s;
+  --t-slow:.45s;
+  --ease:cubic-bezier(.16,1,.3,1);
+
+  /* Una sola familia de marca. Bold para títulos, Regular para texto. */
+  --sans:"Instrument Sans",system-ui,-apple-system,sans-serif;
+  /* Monoespaciada SOLO para bloques de prompt, donde la alineación es
+     funcional. No es tipografía de marca. */
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* Variante opcional: halo verde de fondo. Se usa en las piezas de UNA
+   sola sesión (recursos gratuitos), no en los talleres de la ruta. */
+body.glow{
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 85% 8%, rgba(31,230,171,.13), transparent),
+    radial-gradient(ellipse 55% 40% at 8% 92%, rgba(31,230,171,.10), transparent);
+  background-attachment:fixed;
+}
+
+/* ── Esqueleto ──────────────────────────────────────────────────── */
+.layout{display:flex;min-height:100vh;align-items:flex-start}
+/* La barra lateral se ESTRECHA antes de irse. 274px en escritorio, y baja
+   hasta 208px en ventanas angostas (un pane de editor, una tablet vertical)
+   en vez de saltar al layout de móvil. El lateral es parte de la identidad
+   del formato: se sacrifica último, no primero. */
+.side{width:clamp(208px,21vw,274px);min-width:0;flex:none;background:var(--surface);border-right:1px solid var(--line);position:sticky;top:0;height:100vh;padding:30px 22px;display:flex;flex-direction:column;gap:26px;overflow-y:auto}
+main{flex:1;min-width:0;padding:32px 26px 0;max-width:1520px}
+
+/* ── Marca ──────────────────────────────────────────────────────── */
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:9px;text-decoration:none;color:inherit;max-width:100%}
+/* Fluido: cuando el lateral se estrecha, el lockup se encoge con él en vez
+   de salirse por el borde. 176px es el techo, no una medida fija. */
+.lockup{display:block;width:min(176px,100%);height:auto}
+.lockup-v{display:block;margin:0 auto 26px;width:min(158px,100%);height:auto}
+.brand .sub{font-family:var(--sans);font-weight:600;font-size:.6rem;letter-spacing:.19em;text-transform:uppercase;color:var(--text-faint);line-height:1;display:block;padding-left:2px}
+.brand .handle{display:block;margin-top:9px;font-family:var(--mono);font-size:.72rem;letter-spacing:.02em;color:var(--accent)}
+.brand .tagline{margin-top:8px;font-size:.72rem;font-style:italic;color:var(--text-dim)}
+
+/* Título de la sesión, bajo la marca */
+.session-title{font-size:.85rem;color:var(--text-dim);margin:0;line-height:1.5}
+.session-title strong{color:var(--text);display:block;font-size:1rem;font-weight:800;margin-bottom:4px}
+
+/* ── Pestañas ───────────────────────────────────────────────────────
+   El estado vive en aria-selected, no en una clase. Un solo origen de
+   verdad: lo que lee el lector de pantalla es lo que estiliza el CSS. */
+.tabs{display:flex;flex-direction:column;gap:2px}
+.tab{appearance:none;background:none;border:0;cursor:pointer;text-align:left;width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;border-radius:10px;font-family:var(--sans);font-size:.93rem;font-weight:500;letter-spacing:-.012em;color:var(--text-faint);transition:all var(--t-fast) var(--ease)}
+.tab:hover{color:var(--text);background:var(--surface-2)}
+.tab[aria-selected="true"]{color:var(--text);background:var(--accent-soft);box-shadow:inset 2px 0 0 var(--accent)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.tab .n{font-family:var(--sans);font-weight:600;font-size:.7rem;color:var(--text-faint)}
+.tab[aria-selected="true"] .n{color:var(--accent-hi)}
+
+.side-foot{margin-top:auto;font-family:var(--sans);font-size:.62rem;line-height:1.8;color:var(--text-faint);border-top:1px solid var(--line);padding-top:16px}
+
+/* Cita de anclaje al pie de la barra lateral */
+.anchor-quote{margin-top:auto;padding:16px;border-radius:10px;background:var(--surface-2);border-left:3px solid var(--accent);font-size:.8rem;line-height:1.55;color:var(--text-dim);font-style:italic}
+.anchor-quote b{color:var(--accent);font-style:normal}
+
+/* ── Paneles ────────────────────────────────────────────────────────
+   Visible = .on. Es la única palabra de estado del sistema. */
+.panel{display:none}
+.panel.on{display:block;animation:rise var(--t-slow) var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.lead{margin-bottom:22px}
+.eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.lead h1{font-weight:800;font-size:clamp(1.7rem,2.2vw,2.1rem);letter-spacing:-.03em;line-height:1.14;margin:0 0 10px}
+.lead p{color:var(--text-dim);line-height:1.65;max-width:min(100%,880px);margin:0}
+.lead p+p{margin-top:10px}
+
+/* ── Visor de diapositivas ──────────────────────────────────────────
+   Alto fijo contra la ventana: todas las diapositivas miden igual.
+   El piso de 430px evita que se aplaste en pantallas bajas; si el
+   contenido no cabe, hay scroll interno. "safe center" centra, pero
+   deja de centrar al desbordar para no comerse el principio del texto. */
+.deck{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden}
+.slide{display:none;padding:clamp(36px,4.2vh,52px) clamp(32px,3.6vw,56px);height:max(430px,calc(100vh - var(--alto-marco)));overflow-y:auto;overscroll-behavior:contain;flex-direction:column;justify-content:center;justify-content:safe center;position:relative}
+.slide.on{display:flex;animation:rise var(--t-slow) var(--ease)}
+.slide .kick{font-family:var(--sans);font-weight:600;font-size:.68rem;letter-spacing:.17em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+.slide h1{font-weight:800;font-size:clamp(2.1rem,2.9vw,3.1rem);line-height:1.12;letter-spacing:-.03em;margin:0 0 20px;max-width:min(100%,940px);text-wrap:balance}
+.slide h2{font-size:clamp(1.6rem,2.25vw,2.4rem);font-weight:800;letter-spacing:-.028em;line-height:1.2;margin:0 0 18px;max-width:min(100%,940px);text-wrap:balance}
+.slide p{font-size:clamp(1rem,1.1vw,1.24rem);line-height:1.7;color:var(--text-dim);margin:0 0 13px;max-width:min(100%,860px)}
+.slide p.hit{color:var(--text);font-weight:500}
+.slide ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:11px;max-width:min(100%,900px)}
+.slide ul li{position:relative;padding-left:26px;font-size:clamp(.99rem,1.05vw,1.16rem);line-height:1.6;color:var(--text-dim)}
+.slide ul li::before{content:"▸";position:absolute;left:2px;color:var(--accent);font-weight:600}
+.slide ul li b,.slide ul li strong{color:var(--text);font-weight:600}
+
+/* Resalte dentro de un título o párrafo. Dos niveles, no más: el acento
+   y su derivado claro. Si hiciera falta un tercero, el problema es el
+   texto, no la paleta. */
+.hl{color:var(--accent);font-weight:600}
+.hl-2{color:var(--accent-hi);font-weight:600}
+
+/* Etiqueta de mensaje sobre el título de la diapositiva. El fondo se
+   pasa inline con un token (--accent, --accent-hi, --accent-deep) o,
+   cuando de verdad alerta, con --warn. */
+.msg-tag{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:4px;margin-bottom:16px;color:var(--bg)}
+
+/* Franja superior de acento. Tres pasos del verde, nada más. */
+.slide.acc-1{border-top:4px solid var(--accent)}
+.slide.acc-2{border-top:4px solid var(--accent-hi)}
+.slide.acc-3{border-top:4px solid var(--accent-deep)}
+/* Diapositiva crítica: el ÚNICO lugar donde entra el ámbar. */
+.slide.crit{border-top:3px solid var(--warn);background:linear-gradient(180deg,var(--warn-soft) 0%,transparent 220px)}
+.slide.crit .kick{color:var(--warn)}
+.slide.crit ul li::before{color:var(--warn)}
+
+/* ── Barra de navegación del visor ─────────────────────────────────
+   Los puntos son <button>, no <span>: se llega con Tab y se activan
+   con Enter. El punto actual se marca con aria-current. */
+.deck-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;border-top:1px solid var(--line);background:var(--bg)}
+.dots{display:flex;gap:7px;flex-wrap:wrap}
+.dot{appearance:none;cursor:pointer;border:0;padding:0;width:8px;height:8px;border-radius:var(--r-pill);background:var(--line-strong);transition:all var(--t-fast) var(--ease)}
+.dot:hover{background:var(--text-faint)}
+.dot[aria-current="true"]{background:var(--accent);width:22px}
+.dot:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.arrows{display:flex;gap:8px}
+.arw{appearance:none;cursor:pointer;background:transparent;border:1px solid var(--line-strong);border-radius:var(--r-pill);color:var(--text-dim);font-family:var(--sans);font-weight:600;font-size:.72rem;padding:8px 16px;transition:all var(--t-fast) var(--ease)}
+.arw:hover:not(:disabled){border-color:var(--accent-line);color:var(--accent-hi)}
+.arw:disabled{opacity:.3;cursor:default}
+.arw:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.count{font-family:var(--sans);font-weight:600;font-size:.72rem;color:var(--text-faint)}
+
+/* ── Comparación de dos columnas ───────────────────────────────── */
+.compare{display:flex;gap:18px;margin-top:22px;flex-wrap:wrap}
+.compare .col{flex:1;min-width:230px;background:var(--surface);border-radius:12px;padding:20px;border:1px solid var(--line)}
+.compare .col h4{font-size:.85rem;font-weight:800;margin:0 0 10px;letter-spacing:.04em}
+.compare .col p{font-size:.88rem;margin:0}
+.compare .col.a h4{color:var(--accent)}
+.compare .col.b h4{color:var(--accent-hi)}
+
+/* ── Advertencia ───────────────────────────────────────────────── */
+.warn{font-size:.83rem;color:var(--warn);background:var(--warn-soft);border:1px solid var(--warn-line);border-radius:8px;padding:10px 14px;margin-top:14px;line-height:1.5}
+
+/* ── Tarjeta de paso / herramienta ─────────────────────────────── */
+.step-card{background:var(--surface-2);border:1px solid var(--line);border-radius:16px;padding:28px 30px;margin-bottom:24px}
+.step-card .step-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.step-card .step-num{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:4px;color:var(--bg);background:var(--accent)}
+.step-card h3{font-weight:800;font-size:1.15rem;margin:0}
+.step-card>p{color:var(--text-dim);font-size:.93rem;line-height:1.65;margin:0 0 14px}
+
+/* ── Pasos de uso ──────────────────────────────────────────────────
+   Para las herramientas que necesitan un insumo externo antes de
+   poder correrse. El número lo pone el CSS, no se escribe a mano. */
+.pasos{list-style:none;counter-reset:paso;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:10px}
+.pasos li{counter-increment:paso;position:relative;padding-left:34px;font-size:.92rem;line-height:1.6;color:var(--text-dim)}
+.pasos li::before{
+  content:counter(paso);position:absolute;left:0;top:1px;
+  width:22px;height:22px;border-radius:var(--r-pill);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.68rem;font-weight:800;
+  background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line);
+}
+.pasos li b,.pasos li strong{color:var(--text);font-weight:600}
+
+/* ── Bloque de prompt ──────────────────────────────────────────── */
+.prompt-box{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px}
+pre.code{white-space:pre-wrap;word-wrap:break-word;font-family:var(--mono);font-size:.8rem;line-height:1.6;color:var(--text-dim);max-height:230px;overflow-y:auto;padding-right:8px;margin:0}
+.copy{position:absolute;top:12px;right:12px;appearance:none;cursor:pointer;font-family:var(--sans);font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--bg);border:none;border-radius:6px;padding:8px 14px;transition:all var(--t-fast) var(--ease)}
+.copy:hover{box-shadow:0 0 14px var(--accent-line)}
+.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.copy.done{background:var(--accent-deep);color:var(--bg)}
+
+/* ── Descargas ─────────────────────────────────────────────────────
+   El archivo se arma con el texto del <pre> de la página. Nunca hay
+   una segunda copia que se desincronice. */
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.dl-file{display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:9px 16px;font-family:var(--sans);font-size:.76rem;font-weight:600;color:var(--text-dim);transition:all var(--t-fast) var(--ease)}
+.dl-file:hover{border-color:var(--accent-line);color:var(--accent-hi);background:var(--accent-soft)}
+.dl-file:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dl-file.done{border-color:var(--accent);color:var(--accent)}
+/* Aviso cuando todavía no hay nada que bajar: ámbar, porque alerta. */
+.dl-file.vacio{border-color:var(--warn-line);color:var(--warn);background:var(--warn-soft)}
+.dl-file.vacio::after{content:" — todavía no hay nada que bajar"}
+
+/* ── Caja de beneficio: el acento reservado para lo que tiene valor ── */
+.beneficio{margin-top:20px;background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:var(--r-inner);padding:20px 26px;max-width:min(100%,980px)}
+.beneficio-tag{display:block;font-weight:700;font-size:.64rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.beneficio p{margin:0;font-size:.97rem;line-height:1.62;color:var(--text-dim)}
+.beneficio strong{color:var(--accent-hi);font-weight:700}
+
+/* ── Glosario ──────────────────────────────────────────────────── */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.vocab-card{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:22px;transition:all var(--t-fast) var(--ease)}
+.vocab-card:hover{border-color:var(--accent-line);box-shadow:0 0 16px rgba(31,230,171,.15)}
+.vocab-card h3{font-weight:800;font-size:1rem;margin:0 0 8px;color:var(--accent)}
+.vocab-card p{font-size:.86rem;line-height:1.6;color:var(--text-dim);margin:0}
+.vocab-card .tag{display:inline-block;margin-top:10px;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--surface);border:1px solid var(--line);color:var(--text-dim)}
+
+/* ── Pie: marca a la izquierda, canales a la derecha, legal abajo ───
+   Compacto a propósito: cada píxel que crece se lo quita a la
+   diapositiva, que está calculada contra el alto de la ventana. */
+.pie{display:flex;flex-direction:column;gap:14px;padding:26px 0 40px}
+.pie-top{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px}
+.pie-marca{display:flex;align-items:center;gap:13px;min-width:0}
+.pie-marca img{width:104px;height:auto;display:block;flex:none}
+.pie-marca span{font-size:.78rem;color:var(--text-faint);font-style:italic}
+.pie-redes{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pie-redes a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:9px 15px;font-family:var(--sans);font-size:.76rem;font-weight:500;color:var(--text-dim);transition:border-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease),background var(--t-fast) var(--ease)}
+.pie-redes a:hover{border-color:var(--accent-line);color:var(--accent-hi);background:var(--accent-soft)}
+.pie-redes a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pie-redes a svg{flex:none;opacity:.85}
+.pie-redes a.web{border-color:var(--accent-line);color:var(--accent-hi)}
+.pie-redes a.web:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.pie-legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--sans);font-size:.66rem;line-height:1.9;color:var(--text-faint);border-top:1px solid var(--line);padding-top:11px}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-height:820px){
+  :root{--alto-marco:160px}
+  .slide{padding:34px 48px}
+}
+/* Colapso del lateral. 600px, no 900: por debajo de esto la diapositiva se
+   queda con menos de ~340px de texto entre paddings y deja de leerse.
+   Ese es el límite del CONTENIDO, no el de un dispositivo.
+
+   Las pestañas siguen APILADAS al colapsar. Una fila horizontal con scroll
+   esconde las que no caben, y una navegación que no se ve no existe. El
+   ahorro de alto vertical no paga eso. */
+@media (max-width:600px){
+  .layout{flex-direction:column}
+  .side{width:100%;height:auto;position:static;gap:18px}
+  main{padding:24px 18px 0}
+  .side-foot{display:none}
+  .anchor-quote{margin-top:16px}
+}
+@media (max-width:760px){
+  .pie-top{flex-direction:column;align-items:flex-start;gap:14px}
+  /* 44px de alto: mínimo para tocar con el dedo */
+  .pie-redes a{padding:14px 16px;min-height:44px;font-size:.74rem}
+}
+@media (max-width:680px){
+  .lead h1{font-size:1.5rem}
+  /* Mismo alto también en móvil: si no, la barra de navegación baila al
+     deslizar. El piso sube a 560px porque es lo que necesita la
+     diapositiva más larga a este ancho. */
+  .slide{padding:30px 22px;height:max(560px,calc(100vh - 150px))}
+  .slide h1{font-size:1.6rem}
+  .slide h2{font-size:1.3rem}
+  .deck-nav{padding:14px 16px}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}

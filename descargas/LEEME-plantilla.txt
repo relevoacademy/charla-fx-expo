@@ -1,0 +1,56 @@
+¿NO TIENES TU HISTÓRICO DE OPERACIONES EN ARCHIVO?
+
+Casi ningún bróker te lo da masticado, pero casi todos lo
+exportan. Busca en tu plataforma algo que diga "historial",
+"reporte de cuenta" o "exportar operaciones", y baja CSV o Excel.
+
+Si lo que baja trae columnas que no están aquí, mejor: no borres
+nada. Cuantas más columnas reales, más cortes puede hacer el
+tablero.
+
+Si no puedes exportarlo, abre PLANTILLA-operaciones.csv y llénala
+a mano con tus últimas semanas.
+
+
+QUÉ VA EN CADA COLUMNA
+
+  fecha_entrada    AAAA-MM-DD. Siempre el mismo formato.
+  hora_entrada     HH:MM en 24 horas. Esta columna es la que
+                   permite el corte por hora del día.
+  instrumento      Lo que operaste.
+  direccion        compra o venta.
+  tamano           El tamaño de la posición, en la unidad que
+                   uses. Lo importante es que sea la MISMA
+                   unidad en todas las filas.
+  precio_entrada
+  precio_salida
+  resultado        Ganancia o pérdida. Puede ser en dinero o en
+                   R. Otra vez: la misma unidad en todas.
+  motivo_salida    objetivo / stop / manual / tiempo / otro.
+  notas            Opcional. Lo que estabas pensando.
+
+
+VEINTE OPERACIONES BASTAN
+
+Con menos de veinte no aparece ningún patrón y el tablero no
+tiene nada que mostrarte. Con veinte ya se ve algo.
+
+Y si una muestra queda muy chica, la herramienta te lo va a
+marcar en el propio gráfico. Con pocos datos cualquier patrón
+parece real — ese aviso está ahí para que no te lo creas.
+
+
+EL ORDEN IMPORTA
+
+Deja las filas en orden cronológico. El corte más interesante
+del tablero es "cómo me fue según cómo salió la operación
+ANTERIOR", y ese solo sale si el orden está bien.
+
+
+LO QUE NO VA EN ESTE ARCHIVO
+
+Tu número de cuenta. Tus credenciales. Tu saldo.
+
+El tablero no los necesita para nada, y este archivo lo vas a
+subir a un asistente de IA. Si tu exportación los trae, bórralos
+antes de subirla.
