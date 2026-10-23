@@ -228,7 +228,11 @@ pre.code{white-space:pre-wrap;word-wrap:break-word;font-family:var(--mono);font-
 .beneficio strong{color:var(--accent-hi);font-weight:700}
 
 /* ── Glosario ──────────────────────────────────────────────────── */
-.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+/* min(300px,100%) y no 300px a secas: anidado dentro de un .step-card
+   (60px de padding propio) la columna mínima ya no entra en un móvil y
+   el grid desborda la página. Con min() la columna cede al ancho real
+   del contenedor; en pantallas grandes se comporta igual que antes. */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:16px}
 .vocab-card{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:22px;transition:all var(--t-fast) var(--ease)}
 .vocab-card:hover{border-color:var(--accent-line);box-shadow:0 0 16px rgba(31,230,171,.15)}
 .vocab-card h3{font-weight:800;font-size:1rem;margin:0 0 8px;color:var(--accent)}

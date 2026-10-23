@@ -42,6 +42,7 @@
       <button class="tab" role="tab" id="tab-slides" aria-controls="slides" aria-selected="true">Diapositivas <span class="n">1</span></button>
       <button class="tab" role="tab" id="tab-tools" aria-controls="tools" aria-selected="false">Las herramientas <span class="n">2</span></button>
       <button class="tab" role="tab" id="tab-errors" aria-controls="errors" aria-selected="false">Los seis errores <span class="n">3</span></button>
+      <button class="tab" role="tab" id="tab-conectores" aria-controls="conectores" aria-selected="false">Conectores <span class="n">4</span></button>
     </div>
 
     <p class="anchor-quote">
@@ -680,6 +681,190 @@ REGLAS QUE TIENES QUE SEGUIR:
              cualquiera que tenga el enlace.</p>
           <span class="tag">Al compartir datos</span>
         </article>
+      </div>
+    </section>
+
+
+    <!-- ════════ 4 · CONECTORES ══════════════════════════════════ -->
+    <section class="panel" id="conectores" role="tabpanel" aria-labelledby="tab-conectores" tabindex="0">
+      <header class="lead">
+        <p class="eyebrow">Conectores</p>
+        <h1>Qué puede conectarse a Claude</h1>
+        <p>Un conector le da al asistente acceso a una fuente de datos o a un
+           servicio, y se consulta en lenguaje natural. Esta lista es
+           <b>informativa</b>: está para que sepas qué existe y lo explores por
+           tu cuenta. No es una recomendación de ninguno.</p>
+        <p>Ninguno de los cuatro prompts de esta página necesita un conector.
+           Funcionan solos.</p>
+      </header>
+
+      <article class="step-card">
+        <div class="step-head">
+          <span class="step-num">1</span>
+          <h3>Datos de mercado</h3>
+        </div>
+        <div class="vocab-grid">
+          <article class="vocab-card">
+            <h3>Twelve Data</h3>
+            <p>Precios en tiempo real y más de 100 indicadores técnicos y
+               fundamentales de acciones, forex, cripto y ETFs.</p>
+            <span class="tag">Precios e indicadores</span>
+          </article>
+          <article class="vocab-card">
+            <h3>Alpha Vantage</h3>
+            <p>Acciones, opciones, forex, oro y plata, commodities, indicadores
+               macro (inflación, tasas, empleo), resultados de empresas y
+               noticias con análisis de sentimiento.</p>
+            <span class="tag">El más amplio</span>
+          </article>
+          <article class="vocab-card">
+            <h3>FMP</h3>
+            <p>Financial Modeling Prep. Datos financieros amplios, incluido el
+               reporte COT, que muestra cómo están posicionados los grandes
+               participantes en futuros.</p>
+            <span class="tag">Incluye el COT</span>
+          </article>
+          <article class="vocab-card">
+            <h3>Financial Datasets</h3>
+            <p>Fundamentales de acciones de EE. UU.: balances, flujo de caja,
+               reportes a la SEC y accionistas principales.</p>
+            <span class="tag">Fundamentales de EE. UU.</span>
+          </article>
+          <article class="vocab-card">
+            <h3>Crypto.com Market Data</h3>
+            <p>Precios, velas, tickers e instrumentos del mercado cripto en
+               tiempo real.</p>
+            <span class="tag">Solo cripto</span>
+          </article>
+        </div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-head">
+          <span class="step-num">2</span>
+          <h3>Noticias y sentimiento</h3>
+        </div>
+        <div class="vocab-grid">
+          <article class="vocab-card">
+            <h3>MT Newswires</h3>
+            <p>Noticias financieras globales en tiempo real, filtrables por
+               activo.</p>
+            <span class="tag">Noticias</span>
+          </article>
+          <article class="vocab-card">
+            <h3>LunarCrush</h3>
+            <p>Qué se está diciendo en redes sociales sobre cripto y acciones,
+               y con qué tono.</p>
+            <span class="tag">Redes sociales</span>
+          </article>
+          <article class="vocab-card">
+            <h3>Lukka Prediction Markets</h3>
+            <p>Datos de mercados de predicción como Polymarket y Kalshi:
+               precios, volumen e interés abierto. Solo lectura.</p>
+            <span class="tag">Mercados de predicción</span>
+          </article>
+        </div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-head">
+          <span class="step-num">3</span>
+          <h3>Backtesting</h3>
+        </div>
+        <div class="vocab-grid">
+          <article class="vocab-card">
+            <h3>TEXT TO QUANT</h3>
+            <p>Hace backtests de estrategias escritas en lenguaje natural sobre
+               datos reales, y el reporte marca dónde los resultados pueden ser
+               engañosos.</p>
+            <span class="tag">Lenguaje natural</span>
+          </article>
+          <article class="vocab-card">
+            <h3>Keel</h3>
+            <p>Diseña y hace backtests de estrategias cripto en Hyperliquid.</p>
+            <span class="tag">Cripto</span>
+          </article>
+        </div>
+        <p>Recuerda el error 5: si le pides optimizar parámetros contra tu
+           histórico, te devuelve la curva más bonita posible. Los parámetros se
+           fijan antes de ver el resultado, no después.</p>
+      </article>
+
+      <article class="step-card">
+        <div class="step-head">
+          <span class="step-num">4</span>
+          <h3>Brokers</h3>
+        </div>
+
+        <div class="warn">
+          ⚠ <b>Estos dan acceso a tu cuenta real.</b> Están acá para que sepas
+          que existen, no para que los conectes hoy. Si decides explorarlos:
+          empieza en <b>demo</b>, y deja los límites de riesgo configurados en
+          el broker — fuera del alcance de la IA.
+        </div>
+
+        <p><b>Esto no contradice el error 6.</b> Pegar tus credenciales en una
+           conversación y autorizar un conector son cosas distintas: en el
+           primer caso tu contraseña queda escrita en el historial del chat; en
+           el segundo nunca la ve el modelo, porque la autorización la maneja el
+           broker. Lo que sigue valiendo igual: <b>tu contraseña nunca se
+           escribe en un chat.</b></p>
+
+        <div class="vocab-grid">
+          <article class="vocab-card">
+            <h3>Interactive Brokers</h3>
+            <p>Consulta de saldos, posiciones, órdenes, historial de precios y
+               asignación del portafolio en mercados globales.</p>
+            <span class="tag">Acceso a cuenta</span>
+          </article>
+          <article class="vocab-card">
+            <h3>Webull</h3>
+            <p>Plataforma multi-activo: cuentas, posiciones, watchlists y
+               análisis de analistas.</p>
+            <span class="tag">Acceso a cuenta</span>
+          </article>
+          <article class="vocab-card">
+            <h3>Clear Street</h3>
+            <p>Análisis de acciones y opciones, con acceso a saldos y
+               posiciones.</p>
+            <span class="tag">Acceso a cuenta</span>
+          </article>
+        </div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-head">
+          <span class="step-num">5</span>
+          <h3>De la comunidad</h3>
+        </div>
+
+        <div class="warn">
+          ⚠ <b>No son oficiales.</b> Los mantiene la comunidad, no las empresas
+          cuyos servicios usan. Pueden dejar de funcionar con cualquier
+          actualización, y nadie responde por eso.
+        </div>
+
+        <div class="vocab-grid">
+          <article class="vocab-card">
+            <h3>MetaTrader 5 MCP</h3>
+            <p>Conecta Claude con MT5 para forex: datos, órdenes y
+               posiciones.</p>
+            <span class="tag">No oficial</span>
+          </article>
+          <article class="vocab-card">
+            <h3>TradingView MCP</h3>
+            <p>Lee gráficos y corre estrategias en Pine Script dentro de
+               TradingView. Usa una interfaz no oficial, así que puede dejar de
+               funcionar con cualquier actualización.</p>
+            <span class="tag">No oficial</span>
+          </article>
+        </div>
+      </article>
+
+      <div class="warn">
+        ⚠ Lista al corte de <b>octubre de 2026</b>. Los conectores aparecen,
+        cambian y desaparecen rápido: confirma siempre contra la fuente oficial
+        antes de usar uno.
       </div>
     </section>
 
